@@ -1,0 +1,24 @@
+# Required pull request checks. The checks themselves live in aep-governance and
+# cannot be changed from this repository (only the platform team may edit .github/).
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  # Check runs of a reusable workflow are named "<caller job name> / <called job name>",
+  # so the ruleset requires "ci / test", "ci / security", "ci / policy",
+  # "ci / protected-paths" and "ci / e2e". Do not rename this job.
+  ci:
+    name: ci
+    uses: agengip-demo/aep-governance/.github/workflows/ci.yml@v1

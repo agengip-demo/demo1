@@ -1,0 +1,3 @@
+# Pipeline files are owned by the platform team (rule profile repository.platform_team).
+/.github/ @ppiliqq
+/CODEOWNERS @ppiliqq

@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.env
+.env.*
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan*
+plan.json
+.terraform/
+.aep-governance/

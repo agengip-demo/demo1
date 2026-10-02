@@ -1,0 +1,18 @@
+# Delivery after every merge to main: build once, dev automatically,
+# test and prod after approval. Defined centrally in aep-governance.
+name: deploy
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    # Skipped where no Azure target exists (the template repository itself, or a
+    # project created without Azure: the factory then sets the variables to "unset").
+    if: vars.ACR_LOGIN_SERVER != '' && vars.ACR_LOGIN_SERVER != 'unset'
+    uses: agengip-demo/aep-governance/.github/workflows/deploy.yml@v1
